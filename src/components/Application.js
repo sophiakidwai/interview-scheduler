@@ -46,14 +46,17 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    return axios.put(`/api/appointments/${id}`, { interview })
-      .then(response => {
-        setState(prev => ({
-          ...prev,
-          appointments
-        }));
-      })
-      .catch(err => console.log(err));
+    return new Promise((resolve, reject) => {
+      axios.put(`/api/appointments/${id}`, { interview })
+        .then(res => {
+          setState(prev => ({
+            ...prev,
+            appointments
+          }));
+          resolve(res);
+        })
+        .catch(err => reject(err));
+    });
   };
 
   const cancelInterview = (id) => {
@@ -69,14 +72,17 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    return axios.delete(`/api/appointments/${id}`, { interview })
-      .then(response => {
-        setState(prev => ({
-          ...prev,
-          appointments
-        }));
-      })
-      .catch(err => console.log(err));
+    return new Promise((resolve, reject) => {
+      axios.delete(`/api/appointments/${id}`, { interview })
+        .then(res => {
+          setState(prev => ({
+            ...prev,
+            appointments
+          }));
+          resolve(res);
+        })
+        .catch(err => reject(err));
+    })
   };
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
