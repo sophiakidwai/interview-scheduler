@@ -40,12 +40,14 @@ export default function useApplicationData(initial) {
       [id]: appointment
     };
 
+    const days = updateSpots(state, appointments);
     return new Promise((resolve, reject) => {
       axios.put(`/api/appointments/${id}`, { interview })
         .then(res => {
           setState(prev => ({
             ...prev,
-            appointments
+            appointments,
+            days
           }));
           resolve(res);
         })
@@ -65,19 +67,35 @@ export default function useApplicationData(initial) {
       ...state.appointments,
       [id]: appointment
     };
-
+    const days = updateSpots(state, appointments);
     return new Promise((resolve, reject) => {
       axios.delete(`/api/appointments/${id}`, { interview })
         .then(res => {
           setState(prev => ({
             ...prev,
-            appointments
+            appointments,
+            days
           }));
           resolve(res);
         })
         .catch(err => reject(err));
     })
   };
+
+  const updateSpots = (state, appointments) => {
+    const days = [...state.days]
+    return days.map(day => {
+      const newDay = {...day}
+      let spots = 0;
+      newDay.appointments.forEach(id => {
+        if(appointments[id].interview === null) {
+          spots++;
+        }
+      })
+      newDay.spots = spots;
+      return newDay;
+    })
+  }
 
   return {
     state,
