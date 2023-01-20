@@ -85,10 +85,10 @@ export default function useApplicationData(initial) {
   const updateSpots = (state, appointments) => {
     const days = [...state.days]
     return days.map(day => {
-      const newDay = {...day}
+      const newDay = { ...day }
       let spots = 0;
       newDay.appointments.forEach(id => {
-        if(appointments[id].interview === null) {
+        if (appointments[id].interview === null) {
           spots++;
         }
       })

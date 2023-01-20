@@ -44,7 +44,7 @@ export function getInterviewersForDay(state, day) {
 
   if (filteredDay === undefined || filteredDay.length === 0) {
     return filteredDay;
-  } 
+  }
 
   const arrayOfInterviwers = filteredDay.map(element => {
     return element.interviewers;
