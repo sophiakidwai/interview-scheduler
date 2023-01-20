@@ -1,6 +1,12 @@
 # Interview Scheduler
 Interview Scheduler, is a full stack web app built with React. It allows users to create, delete and edit appointments. Users can enter their name, and select from a list of available interviewers. Application includes built-in test features.
 
+!["Preview of app"] (https://github.com/sophiakidwai/interview-scheduler/blob/master/docs/appointmentView.png?raw=true)
+
+!["Deleting an appointment"] (https://github.com/sophiakidwai/interview-scheduler/blob/master/docs/confirmDelete.png?raw=true)
+
+!["please select an interviewer"] (https://github.com/sophiakidwai/interview-scheduler/blob/master/docs/confirmDelete.png?raw=true)
+
 ## Dependencies
 
 * axios: "^0.20.0"
