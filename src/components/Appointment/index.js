@@ -56,7 +56,7 @@ export default function Appointment(props) {
       {mode === DELETING && <Status message="Deleting" />}
       {mode === CONFIRM && (
         <Confirm
-          message="Are you sure you would like to delete your appointment?"
+          message="Are you sure you would like to delete?"
           onCancel={back}
           onConfirm={cancel}
         />
@@ -86,7 +86,7 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onSave={(name, interviewer) => {
             transition(SAVING)
-            props.bookInterview(props.id, save(name, interviewer))
+            props.bookInterview(props.id, save(props.name, interviewer))
               .then(() => transition(SHOW))
           }}
           onCancel={() => back()}
@@ -94,13 +94,13 @@ export default function Appointment(props) {
       )}
       {mode === ERROR_SAVE && (
         <Error
-          message="Could not save appointment, please try again."
+          message="Could not confirm changes"
           onClose={() => back()}
         />
       )}
       {mode === ERROR_DELETE && (
         <Error
-          message="Could not cancel appointment, please try again."
+          message="Could not cancel appointment"
           onClose={() => transition(SHOW)}
         />
       )}
